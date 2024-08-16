@@ -23,17 +23,19 @@ export function adiciona(){
     let nivel = Number(prompt('Qual a prioridade de sua tarefa?(Digite o número correspodente)\n1 - Baixa\n2 - Média\n3 - Alta\n-> '))
     nivel == 3? nivel = 'alta':(nivel == 2? nivel = 'media' : (nivel == 1? nivel = 'baixa' : nivel = null)); 
 
-    while(atividade.length == 0 || venc == 0 || nivel == null ){
-        if(atividade.length == 0){
-            let atividade = prompt('Digite sua tarefa:\n° ').trim().toLowerCase()
+    while(atividade.length === 0 || venc === null|| nivel === null ){
+        console.log('Funções obrigatórias em branco!')
+        if(atividade.length === 0){
+            atividade = prompt('Digite sua tarefa:\n° ').trim().toLowerCase()
+            return atividade
 
-        }else if(vencimento == null){
-            let venc = Number(prompt('Digite o número de dias  que falta para acabar o prazo de sua atividade:\n'))
-
-        }else if(nivel == null){
-            let nivel = Number(prompt('Qual a prioridade de sua tarefa?(Digite o número correspodente)\n1 - Baixa\n2 - Média\n3 - Alta\n-> '))
+        }else if(venc === null){
+            venc = Number(prompt('Digite o número de dias  que falta para acabar o prazo de sua atividade:\n'))
+            venc != 0? venc = venc : venc = null;
+        
+        }else if(nivel === null){
+            nivel = Number(prompt('Qual a prioridade de sua tarefa?(Digite o número correspodente)\n1 - Baixa\n2 - Média\n3 - Alta\n-> '))
             nivel == 3? nivel = 'alta':(nivel == 2? nivel = 'media' : nivel ='baixa');
-
         }
     }
 
