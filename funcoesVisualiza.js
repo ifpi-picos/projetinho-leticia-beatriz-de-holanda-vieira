@@ -28,13 +28,11 @@ function exibe(array){
         let vence = `Em ${array[i].vencimento} dias`
 
         let priori = array[i].prioridade.charAt(0).toUpperCase() + array[i].prioridade.slice(1).toLowerCase()
-        
-        exibir.push({'Título da tarefa': tarefa, 'Descrição': desc,'Prioridade': priori,'Vencimento da tarefa': vence})
+
+        array[i].status == true ? exibir.push({'Título da tarefa': tarefa, 'Descrição': desc,'Prioridade': priori, 'Status': '✅👌'}) : exibir.push({'Título da tarefa': tarefa, 'Descrição': desc,'Prioridade': priori,'Vencimento da tarefa': vence})
     }
     console.table(exibir)
-}
-
-//let tarefa = array[i].titulo.charAt(0).toUpperCase() + array[i].titulo.slice(1).toLowerCase()
+};
 
 function filtros(){
 
