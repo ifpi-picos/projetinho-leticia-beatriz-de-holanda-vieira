@@ -1,8 +1,16 @@
 // Os .trim() são adicionados no código por causa do sistema operacional do hardware utilizado(windows)
 import { tarefas, Tconcluidas} from "./usuario";
 
+
 function exibe(array){
-    
+
+    if(array[0].status == false){
+        console.log('Tarefas Pendentes:')
+    }else{
+        console.log('Tarefas concluídas:')
+    }
+
+    //Esses for abaixo formata as palavras da array para uma exibição mais bonita
     let exibir = []
     for(let i = 0; i < array.length; i++){
         let palavras = array[i].titulo.split(' ') //Quebra a string e coloca numa lista para depois ser formatada
@@ -13,10 +21,15 @@ function exibe(array){
             tarefa.length == 0? tarefa += forma : tarefa += ' ' + forma
             //Formata cada palavra da mesma string deixando a primeira letra maiúscula e o restante minúscula
         }
-        array[i].descrição != 'Não há descrição para essa atividade'? palavras = array[i].descricao.split(' '): tarefa = array[i].descricao;
 
-        exibir.push(tarefa)
-        console.log(exibir)
+        let desc
+        array[i].descrição != 'Não há descrição para essa atividade'? desc = array[i].descricao.charAt(0).toUpperCase() + array[i].descricao.slice(1).toLowerCase() : desc = array[i].descricao;
+
+        let vence = `Em ${array[i].vencimento} dias`
+
+        let priori = array[i].prioridade.charAt(0).toUpperCase() + array[i].prioridade.slice(1).toLowerCase()
+        
+        exibir.push({'Título da tarefa': tarefa, 'Descrição': desc,'Prioridade': priori,'Vencimento da tarefa': vence})
     }
     console.table(exibir)
 }
