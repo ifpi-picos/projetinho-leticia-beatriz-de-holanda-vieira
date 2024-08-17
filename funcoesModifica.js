@@ -2,7 +2,6 @@
 import { tarefas, Tconcluidas} from "./usuario";
 
 export function adiciona(){
-
     let atividade = prompt('Digite sua tarefa:\n° ').trim().toLowerCase()
 
     let desc
