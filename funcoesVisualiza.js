@@ -1,3 +1,4 @@
+// Os .trim() são adicionados no código por causa do sistema operacional do hardware utilizado(windows)
 import { tarefas, Tconcluidas} from "./usuario";
 
 

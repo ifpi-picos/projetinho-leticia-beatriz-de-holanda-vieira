@@ -1,3 +1,4 @@
+// Os .trim() são adicionados no código por causa do sistema operacional do hardware utilizado(windows)
 import { adiciona, edita, remove, concluida} from "./funcoesModifica";
 import { lista, pesquisa, resume} from "./funcoesVisualiza";
 
