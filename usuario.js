@@ -3,7 +3,7 @@ import { adiciona, edita, remove, concluida} from "./funcoesModifica";
 import { lista, pesquisa, resume} from "./funcoesVisualiza";
 
 export const tarefas = [
-    {titulo: 'limpar', 
+    {titulo: 'limpar a casa', 
      descricao: 'limpeza', 
      vencimento: 2, 
      prioridade: 'baixa',
@@ -11,7 +11,7 @@ export const tarefas = [
 ]
         
 export const Tconcluidas = [
-    {titulo: 'ing', 
+        {titulo: 'ing', 
         descricao:'Não há descrição para essa atividade', 
         vencimento: 2, 
         prioridade: 'baixa',

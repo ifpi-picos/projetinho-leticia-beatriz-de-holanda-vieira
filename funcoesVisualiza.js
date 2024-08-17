@@ -1,6 +1,27 @@
 // Os .trim() são adicionados no código por causa do sistema operacional do hardware utilizado(windows)
 import { tarefas, Tconcluidas} from "./usuario";
 
+function exibe(array){
+    
+    let exibir = []
+    for(let i = 0; i < array.length; i++){
+        let palavras = array[i].titulo.split(' ') //Quebra a string e coloca numa lista para depois ser formatada
+
+        let tarefa = ''
+        for(let i = 0; i < palavras.length; i++){
+            let forma = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase()
+            tarefa.length == 0? tarefa += forma : tarefa += ' ' + forma
+            //Formata cada palavra da mesma string deixando a primeira letra maiúscula e o restante minúscula
+        }
+        array[i].descrição != 'Não há descrição para essa atividade'? palavras = array[i].descricao.split(' '): tarefa = array[i].descricao;
+
+        exibir.push(tarefa)
+        console.log(exibir)
+    }
+    console.table(exibir)
+}
+
+//let tarefa = array[i].titulo.charAt(0).toUpperCase() + array[i].titulo.slice(1).toLowerCase()
 
 function filtros(){
 
@@ -20,6 +41,8 @@ export function lista(){
 
         switch(visualiza){
             case 1:
+                exibe(tarefas)
+                exibe(Tconcluidas)
                 break;
             case 2:
                 break;
@@ -33,13 +56,6 @@ export function lista(){
 
         }
     }
-    
-    // let exibir = []
-    // for(let i = 0; i < tarefas.length; i++){
-    //     let tarefa = tarefas[i].titulo.charAt(0).toUpperCase() + tarefas[i].titulo.slice(1).toLowerCase()
-    //     exibir.push(tarefa)
-    // }
-    // console.table(exibir)
 
 };
 
