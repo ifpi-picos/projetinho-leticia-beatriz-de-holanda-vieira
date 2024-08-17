@@ -1,4 +1,21 @@
-import { adiciona, lista, edita, remove, concluida, pesquisa, resume} from "./funcoes";
+import { adiciona, edita, remove, concluida} from "./funcoesModifica";
+import { lista, pesquisa, resume} from "./funcoesVisualiza";
+
+export const tarefas = [
+    {titulo: 'limpar', 
+     descricao: 'limpeza', 
+     vencimento: 2, 
+     prioridade: 'baixa',
+     status: false}
+]
+        
+export const Tconcluidas = [
+    {titulo: 'ing', 
+        descricao:'Não há descrição para essa atividade', 
+        vencimento: 2, 
+        prioridade: 'baixa',
+        status: true}
+]
 
 let repete = true
 

@@ -1,13 +1,5 @@
-const tarefas = [
-    {titulo: 'limpar', 
-     descricao: 'limpeza', 
-     vencimento: 2, 
-     prioridade: 'baixa',
-     status: false}
-    ]
-        
-const Tconcluidas = []
-
+// Os .trim() são adicionados no código por causa do sistema operacional do hardware utilizado(windows)
+import { tarefas, Tconcluidas} from "./usuario";
 
 export function adiciona(){
 
@@ -44,20 +36,6 @@ export function adiciona(){
     console.table(tarefas)
 };
 
-function filtros(){
-
-};
-
-export function lista(){
-    let exibir = []
-    for(let i = 0; i < tarefas.length; i++){
-        let tarefa = tarefas[i].titulo.charAt(0).toUpperCase() + tarefas[i].titulo.slice(1).toLowerCase()
-
-        exibir.push(tarefa)
-    }
-
-};
-
 export function edita(){
 
 };
@@ -67,13 +45,5 @@ export function remove(){
 };
 
 export function concluida(){
-
-};
-
-export function pesquisa(){
-
-};
-
-export function resume(){
 
 };
