@@ -25,6 +25,7 @@ let repete = true
 while(repete){
 
     const menu = Number(prompt(`
+        ----- Menu Inicial -----
         1 - Adicionar tarefas
         2 - Listar tarefas
         3 - Edita a lista de tarefas

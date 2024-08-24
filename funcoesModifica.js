@@ -151,6 +151,8 @@ export function remove(){
     let repete = true
     while(repete){
         let tudo = tarefas.concat(Tconcluidas)
+
+        //Verifica se existe elementos para a exclusão
         if(tudo.length == 0){
             console.log('Não há nenhuma tarefa para ser removida!!')
             repete = false
@@ -172,6 +174,7 @@ export function remove(){
                 let testeTarefas = tarefas.findIndex((atv) => atv.titulo == tudo[opcao].titulo)
                 let testeConcluidas = Tconcluidas.findIndex((concluida) => concluida.titulo == tudo[opcao].titulo)
 
+                //Verifica se a tarefa que será removida está na lista de tarefas ou na Tconcluida
                 if(testeTarefas > -1){
                     tarefas.splice(testeTarefas, 1)
                     tarefas.length == 0? console.log('Tarefa removida!\nLista de tarefas pendentes está vazia!') : (console.log('Tarefa Removida!'), exibe(tarefas))
@@ -185,5 +188,35 @@ export function remove(){
 };
 
 export function concluida(){
+    let repete = true
+    while(repete){
+        if(tarefas.length == 0){
+            console.log('Não há tarefas para ser concluida!')
+            repete = false
+        }else{
+            exibe(tarefas)       
+            let TarefaConcluida = Number(prompt('Qual dessas tarefas foi concluida?\n-> '))
+            
+            if(TarefaConcluida >= tarefas.length || TarefaConcluida < 0 ){
+                console.log('Opção inválida!')
 
+                let escolha = Number(prompt('Deseja parar a operação? (Digite o número correspondente)\n1 - Sim\n2 - Não\n-> '))
+                escolha == 1? repete = false : repete = true;
+
+            }else{
+                
+                tarefas[TarefaConcluida].status = true
+                Tconcluidas.push(tarefas[TarefaConcluida])
+                console.log('Tarefas concluídas: ')
+                exibe(Tconcluidas)
+
+                tarefas.splice(TarefaConcluida, 1)
+
+                let escolha = Number(prompt('Deseja continuar a operação? (Digite o número correspondente)\n1 - Sim\n2 - Não\n-> '))
+                escolha == 1? repete = true : repete = false;
+
+
+            }
+        }
+    }
 };

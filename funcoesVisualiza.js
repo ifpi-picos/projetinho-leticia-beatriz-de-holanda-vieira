@@ -49,6 +49,7 @@ export function lista(){
             3 - Por prioridade de conclusão
             4 - Por data de criação 
             5 - Aplicar filtro
+            0 - Voltar para o menu inicial
             -> `))
 
         switch(visualiza){
@@ -65,6 +66,9 @@ export function lista(){
             case 4:
                 break;
             case 5:
+                break;
+            case 0 :
+                repete = false
                 break;
             default:
                 const filtra = prompt('Deseja aplicar algum filtro? Digite "s" para Sim ou "n" para Não...').trim().toLowerCase()
