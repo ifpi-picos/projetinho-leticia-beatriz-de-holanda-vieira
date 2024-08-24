@@ -69,22 +69,14 @@ export function edita(){
         //Unir todas as atividades para que o usuário consiga ver todas de uma vez
         let tudo = tarefas.concat(Tconcluidas)
 
-        //Formatação para aparecer só as informações relevantes
-        let mostra = []
-        for(let i = 0; i < tudo.length; i++){
-            let situacao
-            tudo[i].status == false? situacao = '❌ 🫣' : situacao = '✅👌';
-            mostra.push({'Título': tudo[i].titulo, 'Descrição': tudo[i].descricao, 'Data de Vencimento': tudo[i].vencimento, 'Prioridade': tudo[i].prioridade, 'Status': situacao});
-        }
-
         console.log('Todas as tarefas:')
-        console.table(mostra)
+        exibe(tudo)
         //Opção de escolha
-        let opcao = Number(prompt('Quais dessas atividades deseja editar?\n(Digite o número correspodente)\n'))
+        let opcao = Number(prompt('Quais dessas atividades deseja editar?\n(Digite o número correspodente, para parar a edição digite "-1")\n'))
         
         //Verificação se a opção existe
         if(opcao >= tudo.length || opcao < 0){
-            console.log('Essa tarefa não existe! Digite um número válido.')
+            console.log('Essa tarefa não existe!')
             let pause = Number(prompt(`
                 Deseja parar o modo de edição?
                 Digite:
@@ -162,7 +154,7 @@ export function remove(){
 
         //Verifica se existe elementos para a exclusão
         if(tudo.length == 0){
-            console.log('Não há nenhuma tarefa para ser removida!!')
+            console.log('Não há nenhuma tarefa para ser removida!')
             repete = false
         }else{
             exibe(tudo)
