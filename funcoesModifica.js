@@ -72,7 +72,7 @@ export function edita(){
         console.log('Todas as tarefas:')
         exibe(tudo)
         //Opção de escolha
-        let opcao = Number(prompt('Quais dessas atividades deseja editar?\n(Digite o número correspodente, para parar a edição digite "-1")\n'))
+        let opcao = Number(prompt('Quais dessas atividades deseja editar?\n(Digite o número correspodente. Se deseja parar a edição digite "-1")\n'))
         
         //Verificação se a opção existe
         if(opcao >= tudo.length || opcao < 0){
@@ -97,7 +97,12 @@ export function edita(){
                 -> `))
             if(menu == 1){
                 let novoTitulo = prompt('Digite o novo titulo para a tarefa\n').trim().toLowerCase()
-                
+
+                while(novoTitulo.length == 0){
+                    console.log('Título não pode ficar vazio!')
+                    novoTitulo = prompt('Digite o novo titulo para a tarefa\n').trim().toLowerCase()
+                }
+
                 if(testeTarefas > -1){
                     tarefas[testeTarefas].titulo = novoTitulo
                     console.log('Título Alterado!')
@@ -109,7 +114,7 @@ export function edita(){
 
             }else if(menu == 2){
                 let novdesc = prompt('Digite uma nova descrição para a tarefa\n').trim().toLowerCase()
-                
+                novdesc.length == 0? novdesc = 'Não há descrição para essa atividade': novdesc = novdesc;
                 if(testeTarefas > -1){
                     tarefas[testeTarefas].descricao = novdesc
                     console.log('Descrição Alterada!')
@@ -134,6 +139,7 @@ export function edita(){
                     console.log('Essa tarefa já foi concluída!')
                 } 
             }else if(menu == 4){
+                console.log('Se não escolher um número válido a prioridade de sua tarefa será baixa!')
                 let nivel = Number(prompt('Qual a prioridade de sua tarefa?(Digite o número correspodente)\n1 - Baixa\n2 - Média\n3 - Alta\n-> '))
                 nivel == 3? nivel = 'alta': (nivel == 2? nivel = 'media' : nivel = 'baixa');
 
@@ -174,13 +180,16 @@ export function remove(){
                 let testeTarefas = tarefas.findIndex((atv) => atv.titulo == tudo[opcao].titulo)
                 let testeConcluidas = Tconcluidas.findIndex((concluida) => concluida.titulo == tudo[opcao].titulo)
 
-                //Verifica se a tarefa que será removida está na lista de tarefas ou na Tconcluida
-                if(testeTarefas > -1){
-                    tarefas.splice(testeTarefas, 1)
-                    tarefas.length == 0? console.log('Tarefa removida!\nLista de tarefas pendentes está vazia!') : (console.log('Tarefa Removida!'), exibe(tarefas))
-                }else{
-                    Tconcluidas.splice(testeConcluidas, 1)
-                    Tconcluidas.length == 0? console.log('Tarefa removida!\nLista de tarefas concluidas está vazia!') : (console.log('Tarefa Removida!'), exibe(Tconcluidas))
+                const confirma = Number(prompt('Deseja realmente deletar essa tarefa?\n1 - sim\n2 - Não\n-> '))
+                if(confirma === 1){
+                    //Verifica se a tarefa que será removida está na lista de tarefas ou na Tconcluida
+                    if(testeTarefas > -1){
+                        tarefas.splice(testeTarefas, 1)
+                        tarefas.length == 0? console.log('Tarefa removida!\nLista de tarefas pendentes está vazia!') : (console.log('Tarefa Removida!'), exibe(tarefas))
+                    }else{
+                        Tconcluidas.splice(testeConcluidas, 1)
+                        Tconcluidas.length == 0? console.log('Tarefa removida!\nLista de tarefas concluidas está vazia!') : (console.log('Tarefa Removida!'), exibe(Tconcluidas))
+                    }
                 }
             }
         }
