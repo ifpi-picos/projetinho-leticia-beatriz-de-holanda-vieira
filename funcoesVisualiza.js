@@ -37,7 +37,64 @@ export function exibe(array){
 };
 
 function filtros(){
+    let repete = true
+    while(repete){
+        const opc = Number(prompt(`
+            Escolha que maneira deseja filtrar as tarefas:
+            1 - Filtrar por status (pendente/concluída).
+            2 - Filtrar por prioridade.
+            3 - Filtrar por data de vencimento.
+            Digite outro número se deseja voltar ao menu de visualização
+            -> `))
 
+        switch(opc){
+            case 1:
+                const qual = Number(prompt('Escolha um status:\n1 - Pendentes\n2 - Concluídas\n-> '))
+                qual === 1? exibe(tarefas) : exibe(Tconcluidas);
+                break;
+            case 2:
+                let priori = Number(prompt('Qual prioridade deseja filtrar?\n1 - Baixa\n2 - Média\n3 - Alta\n-> '));
+                priori === 1? priori = 'baixa' : ( priori === 2? priori = 'media' : priori = 'alta');
+
+                let listanv = []
+                for(let j in tarefas){
+                    console.log(tarefas[j].prioridade)
+                    if(tarefas[j].prioridade == priori){
+                        listanv.push(tarefas[j])
+
+                    }else{
+                        continue
+                    }
+                }
+                if(listanv.length == 0){
+                    console.log('Não há tarefa com esse nível de prioridade!')
+                }else{
+                exibe(listanv)
+                }
+                break;
+            case 3:
+                tarefas.sort((a, b) => a.vencimento - b.vencimento)
+                console.log('Lista de tarefas: ')
+                exibe(tarefas)
+                break;
+            default:
+                console.log('Suas listas de tarefas está assim: ')
+                if(tarefas.length == 0){
+                    console.log('Não há tarefas pendentes!')
+                }else{
+                console.log('Tarefas Pendentes:')
+                exibe(tarefas)}
+
+                if(Tconcluidas.length == 0){
+                    console.log('Não há tarefas concluídas!')
+                }else{
+                console.log('Tarefas concluídas:')
+                exibe(Tconcluidas)}
+
+                console.log('Voltando para para o menu de visualização...')
+                repete = false
+        }
+    }
 };
 
 export function lista(){
