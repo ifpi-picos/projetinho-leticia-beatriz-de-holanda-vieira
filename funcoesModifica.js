@@ -1,6 +1,24 @@
 // Os .trim() são adicionados no código por causa do sistema operacional do hardware utilizado(windows)
-import { tarefas, Tconcluidas} from "./usuario";
+import { tarefas, Tconcluidas } from "./usuario";
 import { exibe } from "./funcoesVisualiza";
+
+function verificaData(dt){
+    let quebradata = dt.split('/')
+
+    if(quebradata.length === 3 && 
+    Number(quebradata[0]) == quebradata[0] &&
+    Number(quebradata[1]) == quebradata[1] &&
+    Number(quebradata[2]) == quebradata[2]){
+
+        let formdata = new Date(quebradata[2], quebradata[1]- 1, quebradata[0])
+        return formdata
+
+    }else{
+        let formdata = null
+
+        return formdata
+    }
+}
 
 export function adiciona(){
     //Título
@@ -11,40 +29,28 @@ export function adiciona(){
     const opc = prompt('Deseja colocar a descrição de sua tarefa? Digite "s" para Sim ou "n" para Não...\n').trim().toLowerCase()
     opc == 's' ? desc = prompt('Escreva a descrição de sua tarefa: ').trim().toLowerCase(): desc = 'Não há descrição para essa atividade';
 
-    //Data de vencimento
-    let data = prompt('Digite a data de entrega:(coloque na forma DD/MM/AAAA)\n-> ').trim()
-    data != ''? dt(data) : data = null;
+    //criação da data de vencimento e verificação
+    let data = prompt('Digite a data de vencimento:\n(No formato DD/MM/AAAA)\n->').trim()
+    verificaData(data)
 
-    //Essa função quebra a string *data* e formata para o padrão nacional
-    function dt(dados){
-        let datalocal
-        let quebraData = dados.split('/')
-        
-        datalocal = new Date(quebraData[2], quebraData[1] - 1, quebraData[0]).toLocaleDateString();
-
-        return datalocal.toLocaleString("pt-BR", {timeZone : "America/Sao_Paulo"});
-    }
-
-    //Data de criação
-    let dataCriacao= new Date().toLocaleDateString()
-    dataCriacao = dataCriacao.toLocaleString("pt-BR", {timeZone : "America/Sao_Paulo"})
+    //data de criação da tarefa
+    let dataCriacao = new Date()
 
     //Prioridade
     let nivel = Number(prompt('Qual a prioridade de sua tarefa?(Digite o número correspodente)\n1 - Baixa\n2 - Média\n3 - Alta\n-> '))
     nivel == 3? nivel = 'alta':(nivel == 2? nivel = 'media' : (nivel == 1? nivel = 'baixa' : nivel = null)); 
 
     //Verificação de campos obrigatórios
-    while(atividade.length == 0 || data == null|| nivel == null ){
+    while(atividade.length == 0 || verificaData(data) == null|| nivel == null ){
 
         console.log('Funções obrigatórias em branco(ou digitadas erradas)!')
         
         if(atividade.length == 0){
             atividade = prompt('Digite sua tarefa:\n° ').trim().toLowerCase()
 
-        }else if(data == null){
-            data = prompt('Digite a data de entrega:(coloque na forma DD/MM/AAAA)\n-> ').trim()
-            data != ''? dt(data): data = null;
-        
+        }else if(verificaData(data) == null){
+            data = prompt('Digite a data de vencimento:\n(No formato DD/MM/AAAA)\n->').trim()
+            verificaData(data)
         }else if(nivel == null){
             nivel = Number(prompt('Qual a prioridade de sua tarefa?(Digite o número correspodente)\n1 - Baixa\n2 - Média\n3 - Alta\n-> '))
             nivel == 3? nivel = 'alta':(nivel == 2? nivel = 'media' : (nivel == 1? nivel = 'baixa' : nivel = null));
@@ -52,7 +58,7 @@ export function adiciona(){
     }
 
     //Coloca na lista
-    (atividade.length != 0 && data != null && nivel != null)? tarefas.push({dtcriacao : dataCriacao, titulo: atividade, descricao: desc, vencimento: data, prioridade: nivel, status: false}): console.log('ERROR');
+    (atividade.length != 0 && verificaData(data) != null && nivel != null)? tarefas.push({dtcriacao : dataCriacao, titulo: atividade, descricao: desc, vencimento: verificaData(data), prioridade: nivel, status: false}): console.log('ERROR');
     
     exibe(tarefas)
 };
@@ -122,13 +128,15 @@ export function edita(){
                 };
             }else if(menu == 3){
                 if(testeTarefas > -1){
-                    let novaDt = prompt('Digite a data de entrega:(coloque na forma DD/MM/AAAA)\n-> ').trim()
-                    let quebraData = novaDt.split('/')
-                
-                    let datalocal = new Date(quebraData[2], quebraData[1] - 1, quebraData[0]).toLocaleDateString();
-                    datalocal = datalocal.toLocaleString("pt-BR", {timeZone : "America/Sao_Paulo"});
+                    let datanova = prompt('Digite a data de vencimento:\n(No formato DD/MM/AAAA)\n->').trim()
+                    verificaData(datanova)
+                    while(verificaData(datanova) == null){
+                        console.log('Digite uma data válida!')
+                        datanova = prompt('Digite a data de vencimento:\n(No formato DD/MM/AAAA)\n->').trim()
+                        verificaData(datanova)
+                    }
 
-                    tarefas[testeTarefas].vencimento = datalocal
+                    tarefas[testeTarefas].vencimento = verificaData(datanova)
                     console.log('Data de vencimento alterado!')
                 }else{
                     console.log('Essa tarefa já foi concluída!')
