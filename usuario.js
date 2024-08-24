@@ -3,19 +3,21 @@ import { adiciona, edita, remove, concluida} from "./funcoesModifica";
 import { lista, pesquisa, resume} from "./funcoesVisualiza";
 
 export const tarefas = [
-    {titulo: 'limpar a casa', 
+    {dtcriacao : '16/08/2024',
+     titulo: 'limpar a casa', 
      descricao: 'limpeza', 
-     vencimento: 2, 
-     prioridade: 'baixa',
+     vencimento: '20/08/2024', 
+     prioridade: 'media',
      status: false}
 ]
         
 export const Tconcluidas = [
-        {titulo: 'ing', 
-        descricao:'Não há descrição para essa atividade', 
-        vencimento: 2, 
-        prioridade: 'baixa',
-        status: true}
+    {dtcriacao : '16/08/2024',
+    titulo: 'atividade de artes', 
+    descricao:'Não há descrição para essa atividade', 
+    vencimento: '02/09/2024', 
+    prioridade: 'baixa',
+    status: true}
 ]
 
 let repete = true
