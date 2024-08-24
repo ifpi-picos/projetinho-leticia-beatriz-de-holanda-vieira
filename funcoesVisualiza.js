@@ -91,8 +91,18 @@ export function lista(){
                 exibe(tarefas)
                 break;
             case 4:
+                if(tarefas.length != 0 ){
+                    tarefas.sort((a, b) => a.dtcriacao - b.dtcriacao)
+                    console.log('Lista de tarefas pendentes: ')
+                    exibe(tarefas)}
+                if(Tconcluidas.length != 0 ){
+                    console.log('Lista de tarefas concluídas: ')
+                    Tconcluidas.sort((a, b) => a.dtcriacao - b.dtcriacao)
+                    exibe(Tconcluidas)
+                }
                 break;
             case 5:
+                filtros()
                 break;
             case 0 :
                 repete = false
