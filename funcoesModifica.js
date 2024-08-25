@@ -11,8 +11,11 @@ function verificaData(dt){
     Number(quebradata[2]) == quebradata[2]){
 
         let formdata = new Date(quebradata[2], quebradata[1]- 1, quebradata[0])
-        return formdata
-
+        if(formdata < new Date()){
+            return formdata = null
+        }else{
+            return formdata
+        }
     }else{
         let formdata = null
 
@@ -43,7 +46,7 @@ export function adiciona(){
     //Verificação de campos obrigatórios
     while(atividade.length == 0 || verificaData(data) == null|| nivel == null ){
 
-        console.log('Funções obrigatórias em branco(ou digitadas erradas)!')
+        console.log('Funções obrigatórias em branco(ou inválidas)!')
         
         if(atividade.length == 0){
             atividade = prompt('Digite sua tarefa:\n° ').trim().toLowerCase()
