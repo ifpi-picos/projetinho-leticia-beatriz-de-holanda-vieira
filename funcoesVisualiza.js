@@ -191,5 +191,29 @@ export function pesquisa(){
     exibe(des_Encontrados)
 }
 export function resume(){
+    console.log('Resumo das tarefas:')
 
+    let resumo = []
+    let tudo = tarefas.concat(Tconcluidas)
+    for(let i = 0; i < tudo.length; i++){
+
+        let palavras = tudo[i].titulo.split(' ') //Quebra a string e coloca numa lista para depois ser formatada
+
+        let tarefa = ''
+        for(let i = 0; i < palavras.length; i++){
+            let forma = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase()
+            tarefa.length == 0? tarefa += forma : tarefa += ' ' + forma
+            //Formata cada palavra da mesma string deixando a primeira letra maiúscula e o restante minúscula
+        }
+        let c
+        tudo[i].status == false? c = '❌ 🫣': c = '✅👌'
+        resumo.push({'Título da tarefa': tarefa, 'Status': c})
+    }
+    tarefas.sort((a, b) => a.vencimento - b.vencimento)
+    console.table(resumo)
+    console.log(`
+        Número total de tarefas: ${tudo.length}
+        Número de tarefas pendentes: ${tarefas.length}
+        Número de tarefas concluídas: ${Tconcluidas.length}
+        Próxima tarefa a vencer: ${tarefas[0].titulo}`)
 };
