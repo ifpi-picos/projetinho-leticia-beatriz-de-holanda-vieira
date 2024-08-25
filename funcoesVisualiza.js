@@ -101,6 +101,10 @@ export function lista(){
 
     let repete = true
     while(repete){
+        console.log('Todas as tarefas: ')
+        let tudo = tarefas.concat(Tconcluidas)
+        exibe(tudo)
+
         const visualiza = Number(prompt(`
             Escolha que maneira deseja visualizar as tarefas:
             1 - Tarefas pendentes e concluidas
@@ -174,9 +178,18 @@ export function lista(){
 };
 
 export function pesquisa(){
+    let pesq = prompt('Digite o que deseja buscar\n-> ').trim().toLowerCase()
 
-};
+    let tudo = tarefas.concat(Tconcluidas)
 
+    console.log(`Títulos que possuem '${pesq}':`)
+    let ti_Encontrados = tudo.filter((tarefa) => tarefa.titulo.includes(pesq))
+    exibe(ti_Encontrados)
+
+    console.log(`Descrições que possuem '${pesq}':`)
+    let des_Encontrados = tudo.filter((tarefa) => tarefa.descricao.includes(pesq))
+    exibe(des_Encontrados)
+}
 export function resume(){
 
 };
