@@ -1,2 +1,8 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xIJyaq6w)
-## Em construção
+***Gerenciador de Tarefas***
+
+**Este código está separado nos seguintes arquivos:**
+| ARQUIVOS | FUNÇÕES | 
+|----------|----------|
+| usuario.js   | Só recebe as entradas de comando fornecidas pelo usuário  |
+| funçõesModifica.js   | verificaData, adiciona, edita, remove, concluida   |
+| funçõesVisualiza.js  | exibe, filtros, lista, pesquisa, resume   |
